@@ -15,7 +15,7 @@ builders:
   dependecy_injector:
     defaults:
       generate_for:
-        - "**.config.inject.summary"
+        - "**.app.inject.summary"
     target: ":inject_generator"
     import: "package:inject_generator/inject_generator.dart"
     builder_factories:
@@ -25,4 +25,3 @@ builders:
         - ".inject.dart"
     auto_apply: dependents
     build_to: source
-

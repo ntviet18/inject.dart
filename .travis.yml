@@ -26,12 +26,6 @@ stages:
 jobs:
   - stage: presubmit
     script: ./tool/travis.sh analyze
-    env: PKG="example/coffee"
-  - stage: presubmit
-    script: ./tool/travis.sh analyze
-    env: PKG="example/train"
-  - stage: presubmit
-    script: ./tool/travis.sh analyze
     env: PKG="package/inject"
   - stage: presubmit
     script: ./tool/travis.sh analyze
