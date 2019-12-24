@@ -3,7 +3,8 @@ builders:
   dependency_summary:
     defaults:
       generate_for:
-        - "lib/inject/*.dart"
+        - "**/*_app.dart"
+        - "**/*_module.dart"
     target: ":inject_generator"
     import: "package:inject_generator/inject_generator.dart"
     builder_factories:
@@ -15,7 +16,7 @@ builders:
   dependecy_injector:
     defaults:
       generate_for:
-        - "**.app.inject.summary"
+        - "**_app.inject.summary"
     target: ":inject_generator"
     import: "package:inject_generator/inject_generator.dart"
     builder_factories:
