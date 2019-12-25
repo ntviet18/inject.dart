@@ -1,0 +1,13 @@
+container:
+  image: cirrusci/flutter:v1.13.0
+
+task:
+  flutter_pub_cache:
+    folder: .pub-cache
+    fingerprint_script: cat example/inject_app/pubspec.yaml
+    populate_script: cd example/inject_app && flutter pub get
+  matrix:
+    - name: Build
+      build_script: cd example/inject_app && flutter packages pub run build_runner build
+    - name: Test
+      build_script: cd example/inject_app && flutter test

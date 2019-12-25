@@ -32,7 +32,9 @@ dev_dependencies:
     path: ../../package/inject_generator
   flutter_test:
     sdk: flutter
-
+  flutter_driver:
+    sdk: flutter
+  test:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
