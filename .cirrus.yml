@@ -11,3 +11,5 @@ task:
       build_script: cd example/inject_app && flutter packages pub run build_runner build
     - name: Test
       build_script: cd example/inject_app && flutter test
+      depends_on:
+        - Build
