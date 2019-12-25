@@ -1,11 +1,11 @@
-# Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
+## Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
 builders:
-  dependency_summary:
+  summarize_dependencies:
     defaults:
       generate_for:
-        - "**/*_app.dart"
         - "**/*_module.dart"
-    target: ":inject_generator"
+        - "**/*_app.dart"
+    target: ":summarize_dependencies"
     import: "package:inject_generator/inject_generator.dart"
     builder_factories:
       - "summarizeBuilder"
@@ -13,11 +13,13 @@ builders:
       ".dart":
         - ".inject.summary"
     auto_apply: dependents
-  dependecy_injector:
+  generate_source:
     defaults:
       generate_for:
-        - "**_app.inject.summary"
-    target: ":inject_generator"
+        - "lib/inject/*_app.inject.summary"
+    required_inputs:
+      - ".inject.summary"
+    target: ":generate_source"
     import: "package:inject_generator/inject_generator.dart"
     builder_factories:
       - "generateBuilder"

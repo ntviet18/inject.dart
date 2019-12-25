@@ -31,7 +31,7 @@ class InjectCodegenBuilder extends AbstractInjectBuilder {
   String get outputExtension => 'dart';
 
   @override
-  Future<String> buildOutput(BuildStep buildStep) {
+  Future<String> buildOutput(BuildStep buildStep) async {
     return runInContext<String>(buildStep, () => _buildInContext(buildStep));
   }
 
@@ -39,9 +39,9 @@ class InjectCodegenBuilder extends AbstractInjectBuilder {
     // We initially read in our <name>.inject.summary JSON blob, parse it, and
     // use it to generate a "{className}$Injector" Dart class for each @injector
     // annotation that was processed and put in the summary.
-    final summary = LibrarySummary.parseJson(jsonDecode(
-      await buildStep.readAsString(buildStep.inputId),
-    ));
+
+    final summaryStr = await buildStep.readAsString(buildStep.inputId);
+    final summary = LibrarySummary.parseJson(jsonDecode(summaryStr));
 
     if (summary.injectors.isEmpty) {
       return '';
