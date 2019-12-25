@@ -1,48 +1,11 @@
 ## Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
-#builders:
-#  dependency_summary:
-#    defaults:
-#      generate_for:
-#        - "**/*_app.dart"
-#        - "**/*_module.dart"
-#    target: ":inject_generator"
-#    import: "package:inject_generator/inject_generator.dart"
-#    builder_factories:
-#      - "summarizeBuilder"
-#    build_extensions:
-#      ".dart":
-#        - ".inject.summary"
-#    auto_apply: dependents
-#  dependecy_injector:
-#    defaults:
-#      generate_for:
-#        - "**/*_app.inject.summary"
-#    target: ":inject_generator"
-#    import: "package:inject_generator/inject_generator.dart"
-#    builder_factories:
-#      - "generateBuilder"
-#    build_extensions:
-#      ".dart":
-#        - ".inject.dart"
-#    auto_apply: dependents
-#    build_to: source
-
-#builders:
-#  summarize_builder:
-#    target: ":summarize_builder"
-#    import: "package:inject_generator/inject_generator.dart"
-#    builder_factories:
-#      - "summarizeBuilder"
-#      - "generateBuilder"
-#    build_extensions:
-#      ".dart":
-#        - ".inject.summary"
-#        - ".inject.dart"
-#    auto_apply: dependents
-
 builders:
-  summarize:
-    target: ":summarize_builder"
+  summarize_dependencies:
+    defaults:
+      generate_for:
+        - "**/*_module.dart"
+        - "**/*_app.dart"
+    target: ":summarize_dependencies"
     import: "package:inject_generator/inject_generator.dart"
     builder_factories:
       - "summarizeBuilder"
@@ -50,8 +13,13 @@ builders:
       ".dart":
         - ".inject.summary"
     auto_apply: dependents
-  generate:
-    target: ":summarize_builder"
+  generate_source:
+    defaults:
+      generate_for:
+        - "**/*_app.inject.summary"
+    required_inputs:
+      - ".inject.summary"
+    target: ":generate_source"
     import: "package:inject_generator/inject_generator.dart"
     builder_factories:
       - "generateBuilder"
@@ -59,5 +27,4 @@ builders:
       ".dart":
         - ".inject.dart"
     auto_apply: dependents
-    required_inputs:
-      - ".inject.summary"
+    build_to: source
