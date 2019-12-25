@@ -1,28 +1,41 @@
-# Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
+## Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
+#builders:
+#  dependency_summary:
+#    defaults:
+#      generate_for:
+#        - "**/*_app.dart"
+#        - "**/*_module.dart"
+#    target: ":inject_generator"
+#    import: "package:inject_generator/inject_generator.dart"
+#    builder_factories:
+#      - "summarizeBuilder"
+#    build_extensions:
+#      ".dart":
+#        - ".inject.summary"
+#    auto_apply: dependents
+#  dependecy_injector:
+#    defaults:
+#      generate_for:
+#        - "**/*_app.inject.summary"
+#    target: ":inject_generator"
+#    import: "package:inject_generator/inject_generator.dart"
+#    builder_factories:
+#      - "generateBuilder"
+#    build_extensions:
+#      ".dart":
+#        - ".inject.dart"
+#    auto_apply: dependents
+#    build_to: source
 builders:
-  dependency_summary:
-    defaults:
-      generate_for:
-        - "**/*_app.dart"
-        - "**/*_module.dart"
+  inject_generator:
     target: ":inject_generator"
     import: "package:inject_generator/inject_generator.dart"
     builder_factories:
       - "summarizeBuilder"
-    build_extensions:
-      ".dart":
-        - ".inject.summary"
-    auto_apply: dependents
-  dependecy_injector:
-    defaults:
-      generate_for:
-        - "**/*_app.inject.summary"
-    target: ":inject_generator"
-    import: "package:inject_generator/inject_generator.dart"
-    builder_factories:
       - "generateBuilder"
     build_extensions:
       ".dart":
+        - ".inject.summary"
         - ".inject.dart"
     auto_apply: dependents
     build_to: source
