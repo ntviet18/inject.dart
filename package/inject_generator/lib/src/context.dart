@@ -7,12 +7,8 @@
 //                See also: http://cl/219513934
 
 import 'dart:async';
+
 import 'package:analyzer/dart/analysis/results.dart';
-
-// <TRANSITIONAL_API>
-import 'package:analyzer/src/dart/analysis/results.dart';
-// </TRANSITIONAL_API>
-
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:build/build.dart' as build show log;
@@ -103,10 +99,11 @@ class BuilderLogger {
     // <TRANSITIONAL_API>
     ElementDeclarationResult elementDeclaration;
     if (element.kind != ElementKind.DYNAMIC) {
-      var parsedLibrary = ParsedLibraryResultImpl.tmp(element.library);
-      if (parsedLibrary.state == ResultState.VALID) {
-        elementDeclaration = parsedLibrary.getElementDeclaration(element);
-      }
+//      TODO: fix with analysis session
+//      var parsedLibrary = AnalysisSession.getParsedLibraryByElement(element.library);
+//      if (parsedLibrary.state == ResultState.VALID) {
+//        elementDeclaration = parsedLibrary.getElementDeclaration(element);
+//      }
     }
     // </TRANSITIONAL_API>
     String sourceLocation;
