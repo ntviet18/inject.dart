@@ -4,6 +4,6 @@ container:
 task:
   pub_cache:
     folder: ~/.pub-cache
-  get_dependencies: cd example/inject_app && flutter pub get
+  get_script: cd example/inject_app && flutter pub get
   build_script: cd example/inject_app && flutter packages pub run build_runner build
   test_script: cd example/inject_app && flutter test
