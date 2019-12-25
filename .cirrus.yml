@@ -2,5 +2,8 @@ container:
   image: cirrusci/flutter:v1.13.0
 
 task:
+  pub_cache:
+    folder: ~/.pub-cache
+  get_dependencies: cd example/inject_app && flutter pub get
   build_script: cd example/inject_app && flutter packages pub run build_runner build
   test_script: cd example/inject_app && flutter test
