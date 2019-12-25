@@ -16,7 +16,7 @@ builders:
   dependecy_injector:
     defaults:
       generate_for:
-        - "**_app.inject.summary"
+        - "**/*_app.inject.summary"
     target: ":inject_generator"
     import: "package:inject_generator/inject_generator.dart"
     builder_factories:

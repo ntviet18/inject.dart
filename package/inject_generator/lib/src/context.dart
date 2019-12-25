@@ -99,11 +99,11 @@ class BuilderLogger {
     // <TRANSITIONAL_API>
     ElementDeclarationResult elementDeclaration;
     if (element.kind != ElementKind.DYNAMIC) {
-//      TODO: fix with analysis session
-//      var parsedLibrary = AnalysisSession.getParsedLibraryByElement(element.library);
-//      if (parsedLibrary.state == ResultState.VALID) {
-//        elementDeclaration = parsedLibrary.getElementDeclaration(element);
-//      }
+      var parsedLibrary =
+          element.library.session.getParsedLibraryByElement(element.library);
+      if (parsedLibrary.state == ResultState.VALID) {
+        elementDeclaration = parsedLibrary.getElementDeclaration(element);
+      }
     }
     // </TRANSITIONAL_API>
     String sourceLocation;
