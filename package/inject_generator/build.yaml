@@ -16,7 +16,7 @@ builders:
   generate_source:
     defaults:
       generate_for:
-        - "lib/inject/*_app.inject.summary"
+        - "**/*_app.inject.summary"
     required_inputs:
       - ".inject.summary"
     target: ":generate_source"
